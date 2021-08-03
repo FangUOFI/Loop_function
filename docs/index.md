@@ -1,6 +1,5 @@
 ---
-title: "Advanced Data Science for planners"
-subtitle: Lecture 3 Loops and functions
+title: "Lab exercise: Loop and function in R"
 author: "Fang Fang"
 knit: (function(input_file, encoding) {
   out_dir <- 'docs';
