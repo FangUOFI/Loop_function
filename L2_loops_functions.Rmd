@@ -1,5 +1,5 @@
 ---
-title: "Lab exercise: Loop and function in R"
+title: "Loop and function in R"
 author: "Fang Fang"
 knit: (function(input_file, encoding) {
   out_dir <- 'docs';
@@ -45,8 +45,26 @@ Here are a few things you need to do when get started with a dataset.
 - Data Entry Errors (Upper/lower case, abbreviations...etc)
 - Missing Values 
 
+Before you get started, please download the datasets below and save it locally under the data folder. 
 
-Let's take a look at a dataset to demonstrate the data examination process. This landings_data data frame is from a fishery-dependent landing site survey. The included species is Caesio cuning. Click [here](https://raw.githubusercontent.com/SFG-UCSB/fishery-manageR/master/_data/sample_landings_data_raw.csv) to download the dataset. Click [here](https://sfg-ucsb.github.io/fishery-manageR/loading-data-and-data-cleaning.html) for more information about this data clean up process. 
+Dataset1: 
+
+```{r echo=F}
+
+xfun::embed_file('data/sample_landings_data_raw.csv')
+
+
+```
+
+Dataet2: 
+
+```{r echo=F}
+xfun::embed_file('data/CPI_U.csv')
+```
+
+
+
+Let's take a look at a dataset to demonstrate the data examination process. This landings_data data frame is from a fishery-dependent landing site survey. The included species is Caesio cuning. Click [here](https://sfg-ucsb.github.io/fishery-manageR/loading-data-and-data-cleaning.html) for more information about this data clean up process. 
 
 
 Let's load the dataset in R first. 
@@ -57,7 +75,7 @@ glimpse(landings_data)
 ```
 
 
-We have 7214 rows and 8 columns. You will realize that 1) the column names are not straightforwad enough; 2) the data type for the second column is wrong. 3) convert `gear` as factor.  
+We have 7214 rows and 8 columns. You will realize that 1) the column names are not straightforward enough; 2) the data type for the second column is wrong. 3) convert `gear` as factor.  
 
 ```{r eval=F}
  library(lubridate)
@@ -129,11 +147,11 @@ landings_data_clean <- na.omit(landings_data)
 
 
 # 1. Loops
-If you google what are loops, it will tell you that "loops are used in programming to repeat a specific block of code". Let's start this concept with an example. Below is the weekly scheduel for Tom. Tom has to take Physics every Mon/Wed/Fri at 10 am. In other words, Tom has to repeat the action (learn Physics) only if it is Mon/Wed/Fri (conditions) of the week. 
+If you google what are loops, it will tell you that "loops are used in programming to repeat a specific block of code". Let's start this concept with an example. Below is the weekly schedule for Tom. Tom has to take Physics every Mon/Wed/Fri at 10 am. In other words, Tom has to repeat the action (learn Physics) only if it is Mon/Wed/Fri (conditions) of the week. 
 
 ![ ](images/class.jpg)
 
-Conceptually, we can code Tom's schedul below:
+Conceptually, we can code Tom's schedule below:
 Note DON'T execute the script below. 
 ```{r eval=F}
 if (Mon/Wed/Fri)
@@ -153,9 +171,9 @@ This is a typical loop in R, as far as the conditions are met. In this lecture, 
 
 In general, there are two types of commands to efficiently control the flow of execution of a series of R expressions in R.
 
-1) The number of the iteration is given. You need to repeat the action which is prescribed by certain number of times, or so called limit the action by a counter or an index. This index will be incremented at each iteration (e.g. print "Tom" repeatly for ten times, ten is predefined). For example, `for` function in R.
+1) The number of the iteration is given. You need to repeat the action which is prescribed by certain number of times, or so called limit the action by a counter or an index. This index will be incremented at each iteration (e.g. print "Tom" repeatably for ten times, ten is predefined). For example, `for` function in R.
 
-2) It is hard to know how many times you need to repeat the action. But you can start and end a loop via the onset and verification of a given logical condition (Recall what are logical variables we mentioned last week). The logical condition is tested at the start or the end of the loop.You can decide to stop/continue/exit the loop based on the conditoin of the logical condition (e.g. print "excellent" as far as the student get 90+ for the exam). For example, `while` command is one of the family of loop function in this category.  
+2) It is hard to know how many times you need to repeat the action. But you can start and end a loop via the onset and verification of a given logical condition (Recall what are logical variables we mentioned last week). The logical condition is tested at the start or the end of the loop.You can decide to stop/continue/exit the loop based on the condition of the logical condition (e.g. print "excellent" as far as the student get 90+ for the exam). For example, `while` command is one of the family of loop function in this category.  
 
 In this handout, we will introduce these commands for flow control with examples. Please run these examples in R yourself. 
 
@@ -224,7 +242,7 @@ while (day <8 ) {
 }
 ```
 
-4) repeat and break statment
+4) repeat and break statement
 
 We can also use repeat and break to print the day of the week. We will repeat the action (print the day of the week from number 1), after each action day will be incremented by 1. The action will stop when the value is 8. Break statement will end the loop immediately. 
 ```{r eval=F}
@@ -301,13 +319,13 @@ sapply(x, mean)
 
 You can use `tapply` as a short cut when you are working with dataframes. 
 
-tapply will apply a function to each item of a ragged array, that is to each group of the values. The group is determined by a certain column. The basic template is:
+`tapply` will apply a function to each item of a ragged array, that is to each group of the values. The group is determined by a certain column. The basic template is:
 ```{r eval=F}
 # Please DO NOT execute the script below. 
 # This is a template only
 tapply(column to be calculated,column which specifying the groups, function/action...)
 ```
-Load the dataset called `weather` from nycflights13 package. It includes hourly measured meterological data for LGA, JFK and EWR airports in NYC, 2013.  
+Load the dataset called `weather` from nycflights13 package. It includes hourly measured meteorological data for LGA, JFK and EWR airports in NYC, 2013.  
 
 If we want to calculate the average temperature (based on the temp column) for each month (column called month), we can use the `tapply` function. 
 
@@ -385,7 +403,7 @@ In fact you can create an anonymous function if no names are provided. But the s
 ```
 
 
-Let's take a look at another application of user generated functions. Please download the dataset from compass called "CPI_U.csv" and load it into R. This table is originally derived from [US census Bureau](https://www.census.gov/topics/income-poverty/income/guidance/current-vs-constant-dollars.html). 
+Let's take a look at another application of user generated functions. Please load the data called "CPI_U.csv". This table is originally derived from [US census Bureau](https://www.census.gov/topics/income-poverty/income/guidance/current-vs-constant-dollars.html). 
 
 When we need to compare median household income over different years, we need to adjust the median household income value for changes in cost of living (prices). Here we will use the Bureau of Labor Statistics' (BLS) Consumer Price Index Research Series (CPI-U-RS) to adjust for changes in the cost of living.This table includes the Annual Average Consumer Price Index Research Series (CPI-U-RS) from 1947 to 2018. 
 
